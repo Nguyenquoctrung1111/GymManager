@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <div style="padding: 60px 0;">
+        <h1 class="display-4 mb-4">Welcome to Gym Manager</h1>
+        <p class="lead mb-5">Comprehensive Gym Management System</p>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="/Admin/Dashboard" class="btn btn-primary btn-lg me-2">Admin Dashboard</a>
+            }
+            else if (User.IsInRole("Cashier"))
+            {
+                <a href="/Cashier/Dashboard" class="btn btn-primary btn-lg me-2">Cashier Dashboard</a>
+            }
+            else if (User.IsInRole("Member"))
+            {
+                <a href="/Member/Dashboard" class="btn btn-primary btn-lg me-2">Member Dashboard</a>
+            }
+            else if (User.IsInRole("Trainer"))
+            {
+                <a href="/Trainer/Dashboard" class="btn btn-primary btn-lg me-2">Trainer Dashboard</a>
+            }
+        }
+        else
+        {
+            <a href="/Account/Login" class="btn btn-primary btn-lg me-2">Login</a>
+            <a href="/Account/Register" class="btn btn-outline-primary btn-lg">Register</a>
+        }
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">💪 Members</h5>
+                    <p class="card-text">Manage gym members and their profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">👨‍🏫 Trainers</h5>
+                    <p class="card-text">Organize trainers and their schedules</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">📦 Packages</h5>
+                    <p class="card-text">Create and manage membership packages</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">💳 Payments</h5>
+                    <p class="card-text">Track and manage payment transactions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
